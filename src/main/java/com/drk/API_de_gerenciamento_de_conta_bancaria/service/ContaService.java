@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -23,10 +24,24 @@ public class ContaService {
     }
 
     public ResponseEntity<Conta> listarContaPorID(Long id) {
-        Conta existe = repository.findById(id).orElseThrow(
-                ()  -> new EntityNotFoundException("Conta Bancaria não encontrada")
-        );
-        return ResponseEntity.ok(existe);
+        Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta Bancaria não encontrada"));
+        return ResponseEntity.ok(conta);
+    }
+
+    public ResponseEntity<Conta> depositar(Long id, BigDecimal valor) {
+        Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta Bancaria não encontrada"));
+        conta.setSaldo(conta.getSaldo().add(valor));
+        return ResponseEntity.ok(repository.save(conta));
+    }
+
+    public ResponseEntity<Conta> sacar(Long id, BigDecimal saque) {
+        Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta bancaria não encontrada"));
+        if (conta.getSaldo().compareTo(saque) < 0) {
+            throw new IllegalArgumentException("Saldo insuficiente para o saque");
+        }
+        conta.setSaldo(conta.getSaldo().subtract(saque));
+
+        return ResponseEntity.ok(repository.save(conta));
     }
 
 }
