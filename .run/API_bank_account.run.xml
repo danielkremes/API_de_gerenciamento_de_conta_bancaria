@@ -1,0 +1,28 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="API_bank_account" type="Application" factoryName="Application">
+    <envs>
+      <env name="CLASS_CONNECTION" value="org.postgresql.Driver" />
+      <env name="DDL_DATABASE" value="create-drop" />
+      <env name="DIALECT_DATABASE" value="org.hibernate.dialect.PostgreSQLDialect" />
+      <env name="PORT" value="5432" />
+      <env name="POSTGRES_DB" value="registration_users" />
+      <env name="POSTGRES_PASSWORD" value="2040" />
+      <env name="POSTGRES_USER" value="admin" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.drk.API_de_gerenciamento_de_conta_bancaria.ApiDeGerenciamentoDeContaBancariaApplication" />
+    <module name="API_de_gerenciamento_de_conta_bancaria" />
+    <extension name="net.ashald.envfile">
+      <option name="IS_ENABLED" value="false" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+      </ENTRIES>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
