@@ -44,4 +44,11 @@ public class ContaService {
         return ResponseEntity.ok(repository.save(conta));
     }
 
+    public ResponseEntity<BigDecimal> consultarSaldo(Long id) {
+        Conta conta = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Conta não encontrada")
+        );
+        return ResponseEntity.ok(conta.getSaldo());
+    }
+
 }

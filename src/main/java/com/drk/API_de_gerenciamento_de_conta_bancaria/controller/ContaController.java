@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -30,4 +31,18 @@ public class ContaController {
         return service.listarContaPorID(id);
     }
 
+    @PostMapping("/{id}/depositar")
+    public ResponseEntity<Conta> depositar(@PathVariable Long id, @RequestParam BigDecimal valor) {
+        return service.depositar(id, valor);
+    }
+
+    @PostMapping("/{id}/sacar")
+    public ResponseEntity<Conta> sacar(@PathVariable Long id, @RequestParam BigDecimal valor) {
+        return service.sacar(id, valor);
+    }
+
+    @GetMapping("/saldo/{id}")
+    public ResponseEntity<BigDecimal> consultarSaldo(@PathVariable Long id) {
+        return service.consultarSaldo(id);
+    }
 }
