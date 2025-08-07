@@ -10,4 +10,5 @@ import java.math.BigDecimal;
 public class ContaDTO {
     private String titular;
     private BigDecimal saldo;
+
 }
